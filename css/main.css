@@ -380,4 +380,22 @@ nav .nav__link:active {
         font-size: 16px;
         text-align: center;
     }
+
+    .slider__block h1 {
+        font-size: 32px;
+    }
+
+    .news__item {
+        flex-direction: column;
+    }
+
+    .news__item__cover {
+        width: 100%;
+    }
+
+    .news__item__content {
+        padding: 0;
+        padding-top: 10px;
+        width: 100%;
+    }
 }
