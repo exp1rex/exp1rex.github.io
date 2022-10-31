@@ -1,5 +1,16 @@
 const news = [
     {
+        id: `1`,
+        img: `1.jpg`,
+        title: `Школьники примерили профессию бухгалтера`, 
+        date: `31.10.2022`,
+        desc: `27.10.2022 г. в ГАПОУ РБ «Политехнический техникум» прошла профессиональная проба по профессии «Бухгалтер».
+        Проба направлена на выявление склонностей и способности учащихся к выполнению работ, связанных с обработкой цифровой информации и оформлением документации с использованием программы Ecxel, пробуждением интереса к экономике.
+        В течение занятия все совместно создали портрет качеств, которыми должен обладать бухгалтер, узнали историю возникновения этой профессии.
+        Побывав в роли бухгалтера, школьники, создавали таблицы - ведомости начисления заработной платы на разных листах электронной книги, произвели все необходимые расчеты, стоили гистограмму максимальной и минимальной заработной платы.        
+        `
+    },
+    {
         id: `2`,
         img: `2.jpg`,
         title: `Профессиональные пробы по профессии "Электромонтер"`, 
@@ -32,26 +43,119 @@ const news = [
         #политех03 #политехселенгинск #спо03
         `
     },
+    {
+        id: `5`,
+        img: `5.jpg`,
+        title: `Правовое колесо`,  
+        date: `19.10.2022`,
+        desc: `13 октября в Каменском филиале принимали гостей из Каменской библиотеки зав.библиотекой Жигалина Л.В и библиотекаря Штремель С.В. они провели для студентов 1, 2 и 3 курса мероприятие «Правовое колесо», где в игровой форме затронули темы:
+        Знаешь ли ты право?
+        Не попади в беду..
+        провели практикумы: Следствие ведут знатоки., Школа юных сыщиков…
+        Ребята разгадывали кроссворды, отвечали на вопросы правовой грамотности.
+        Участие в интеллектуально- познавательном мероприятии «Правовое колесо» является серьезной предпосылкой для формирования компетенций, достаточных для защиты прав ,свобод и законных интересов личности, высокого уровня воспитанности, ответственности; активного вовлечения, заинтересованности молодежи в получении правовых знаний.
+        Ребятам очень понравилось мероприятие, самые активные получили знак «Активный гражданин».
+        #политех03 #политехселенгинск #спо03
+        `
+    },
+    {
+        id: `6`,
+        img: `6.jpg`,
+        title: `Сессия у студентов заочного отделения`,  
+        date: `19.10.2022`,
+        desc: `Только во время сессии студент-заочник становится сверхчеловеком. Он перестаёт есть, спать и как суперкомпьютер способен загружать в себя нереальное количество информации.
+        Именно такая пора наступила с 17 октября 2022г в Политехническом техникуме, а всё потому что началась сессия заочного отделения по специальности Дошкольное образование, отметим, что это первый набор заочников по этой специальности.
+        15 девушек , будущих воспитателей приступили к обучению на срок 3 г 10 месяцев. Среднее профессиональное образование по этому профилю предполагает освоение гуманитарных, социально-экономических, математических и естественнонаучных предметов. Обучение заканчивается итоговой аттестацией в виде демонстрационного экзамена  и защитой диплома. Полученные теоретические знания закрепляются в ходе практики.  Во время обучения студент должен освоить технику общения, основы психодиагностики и методы коррекционной педагогики.
+        Желаем удачной сессии!
+        #спо03 #политех03 #политехселенгинск
+        `
+    },
 ]
 
 const newsView = document.querySelector('.news__view')
+const newsPagination = document.querySelector('.news__pagination')
+
+// Пагинация
+let newsOnPage = 2
+let currentNote = 0
+let paginationBtnCount = news.length / newsOnPage
+
+for (var i = 0; i < paginationBtnCount; i++) {
+    if (i === 0) {
+        newsPagination.innerHTML += `
+            <a class="news__pagination__item active">${i + 1}</a>
+        ` 
+    }
+    else {
+        newsPagination.innerHTML += `
+            <a class="news__pagination__item">${i + 1}</a>
+        `
+    }
+}
+
+const paginationItems = document.querySelectorAll('.news__pagination__item')
 
 news.forEach(newsItem => {
-    newsView.innerHTML += `
-        <div class="news__item">
-            <div class="news__item__cover">
-                <img src="img/news/${newsItem.img}" alt="${newsItem.id}" class="news__item__img">
+    if (currentNote < newsOnPage) {
+        newsView.innerHTML += `
+            <div class="news__item">
+                <div class="news__item__cover">
+                    <img src="img/news/${newsItem.img}" alt="${newsItem.id}" class="news__item__img">
+                </div>
+                <div class="news__item__content">
+                    <h3 class="news__item__content__title">${newsItem.title}</h3>
+                    <span class="news__item__content__date">${newsItem.date}</span>
+                    <p class="news__item__content__desc">
+                        ${newsItem.desc}
+                    </p>
+                    <a href="#" class="news__item__btn">
+                        Подробнее
+                    </a>
+                </div>
             </div>
-            <div class="news__item__content">
-                <h3 class="news__item__content__title">${newsItem.title}</h3>
-                <span class="news__item__content__date">${newsItem.date}</span>
-                <p class="news__item__content__desc">
-                    ${newsItem.desc}
-                </p>
-                <a href="#" class="news__item__btn">
-                    Подробнее
-                </a>
-            </div>
-        </div>
-    `
+        `
+    }
+    currentNote++
+})
+
+paginationItems.forEach(item => {
+    item.addEventListener('click', () => {
+        
+
+        let pageNum = item.innerHTML
+        let startSlice = (pageNum - 1) * newsOnPage
+        let endSlice = startSlice + newsOnPage
+        let notes = news.slice(startSlice, endSlice)
+
+        for (var i = 0; i < paginationItems.length; i++) {
+            if (pageNum - 1 === i) {
+                paginationItems[i].classList.add('active')
+            }
+            else {
+                paginationItems[i].classList.remove('active')
+            }
+        }
+
+        // console.log(notes)
+        newsView.innerHTML = ``
+        notes.forEach(note => {
+            newsView.innerHTML += `
+                <div class="news__item">
+                    <div class="news__item__cover">
+                        <img src="img/news/${note.img}" alt="${note.id}" class="news__item__img">
+                    </div>
+                    <div class="news__item__content">
+                        <h3 class="news__item__content__title">${note.title}</h3>
+                        <span class="news__item__content__date">${note.date}</span>
+                        <p class="news__item__content__desc">
+                            ${note.desc}
+                        </p>
+                        <a href="#" class="news__item__btn">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            `
+        })
+    })
 })
