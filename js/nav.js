@@ -1,5 +1,7 @@
 const nav = document.querySelector('nav')
+const navBtn = document.querySelector('.header__nav__btn')
 
-document.querySelector('.header__nav__btn').onclick = () => {
+navBtn.onclick = () => {
     nav.classList.toggle('active')
+    navBtn.classList.toggle('active')
 }
