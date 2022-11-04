@@ -72,16 +72,18 @@ slides.forEach(slide => {
             </div>
         </div>
     `
-    if (slide.id === 1) {
-        sliderBtns.innerHTML += `
-            <div class="slider__btn selected" onclick="toSlide(${slide.id})"></div>
-        `
-    }
-    else {
-        sliderBtns.innerHTML += `
-            <div class="slider__btn" onclick="toSlide(${slide.id})"></div>
-        `
-    }
+    if (slides.length > 1) {
+        if (slide.id === 1) {
+            sliderBtns.innerHTML += `
+                <div class="slider__btn selected" onclick="toSlide(${slide.id})"></div>
+            `
+        }
+        else {
+            sliderBtns.innerHTML += `
+                <div class="slider__btn" onclick="toSlide(${slide.id})"></div>
+            `
+        }
+    }    
 })
 
 function toSlide(n) {
