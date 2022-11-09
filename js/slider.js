@@ -50,6 +50,7 @@
 
 var _left = 0;
 var _timer = 0;
+var currentSlide = 1
 
 
 const slides = [
@@ -88,6 +89,7 @@ slides.forEach(slide => {
 
 function toSlide(n) {
     let slideBtns = document.querySelectorAll('.slider__btn')
+    currentSlide = n
     for (var i = 0; i < slideBtns.length; i++) {
         if (i == n - 1) {
             slideBtns[i].classList.add('selected')
@@ -100,4 +102,22 @@ function toSlide(n) {
 
     _left = -100 * (n - 1)
     sliderView.style.transform = `translate(${_left}vw, 0)`
+}
+
+function prevSlide() {
+    if (currentSlide > 1) {
+        toSlide(currentSlide - 1)
+    }
+    else {
+        toSlide(slides.length)
+    }
+}
+
+function nextSlide() {
+    if (currentSlide < slides.length) {
+        toSlide(currentSlide + 1)
+    }
+    else {
+        toSlide(1)
+    }
 }

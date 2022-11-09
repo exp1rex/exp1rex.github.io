@@ -76,7 +76,7 @@ const newsView = document.querySelector('.news__view')
 const newsPagination = document.querySelector('.news__pagination')
 
 // Пагинация
-let newsOnPage = 2
+let newsOnPage = 3
 let currentNote = 0
 let paginationBtnCount = news.length / newsOnPage
 
