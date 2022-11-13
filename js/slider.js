@@ -48,8 +48,8 @@
 // //     clearTimeout(_timer)
 // // }
 
-var _left = 0;
-var _timer = 0;
+var _left = 0
+var _timer = 0
 var currentSlide = 1
 
 
